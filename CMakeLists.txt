@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
-# Remove explicit compiler paths and let Visual Studio handle it
+# Set the correct Qt installation path
+set(CMAKE_PREFIX_PATH "C:/Qt/6.8.2/msvc2022_64")
+set(Qt6_DIR "C:/Qt/6.8.2/msvc2022_64/lib/cmake/Qt6")
+
 project(FileManager)
 
 # Set C++ standard
@@ -9,14 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
-set(Qt6_DIR F:/Qt6.7/6.7.2/mingw_64/lib/cmake/Qt6/)
-
-# Add this section before find_package
-# Adjust the path based on your Qt installation version and compiler
-# Common paths might be:
-# C:/Qt/6.6.1/msvc2019_64
-# C:/Qt/6.6.1/mingw_64
-  # Adjust version number as needed
 
 # Find Qt package
 find_package(Qt6 COMPONENTS Widgets Core REQUIRED)
@@ -24,18 +19,16 @@ if (NOT Qt6_FOUND)
     find_package(Qt5 COMPONENTS Core REQUIRED)
 endif()
 
-# Add your source files
+# Add your source files (removed fileanalyzer files)
 set(SOURCES
     src/main.cpp
     src/mainwindow.cpp
     src/filemanager.cpp
-    src/fileanalyzer.cpp
 )
 
 set(HEADERS
     src/mainwindow.h
     src/filemanager.h
-    src/fileanalyzer.h
 )
 
 # Create the executable
@@ -55,4 +48,4 @@ endif()
 # Include directories
 target_include_directories(FileManager PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
-) 
+)

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QMainWindow>
 #include <QFileSystemModel>
@@ -11,6 +12,8 @@
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class FileManager;  // Forward declaration
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -29,7 +32,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QFileSystemModel *fileModel;
-    FileManager *fileManager;
+    FileManager *fileManager;  // Fixed pointer declaration
     FileAnalyzer *fileAnalyzer;
     QTreeView *treeView;
     QLabel *detailsLabel;
@@ -38,3 +41,5 @@ private:
     void setupUI();
     void setupConnections();
 };
+
+#endif // MAINWINDOW_H

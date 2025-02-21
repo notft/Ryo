@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTreeView>
@@ -8,12 +9,15 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QPropertyAnimation>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
     , fileModel(new QFileSystemModel(this))
     , fileManager(new FileManager())
 {
+    ui->setupUi(this);
     setupUI();
     setupConnections();
 }
@@ -23,6 +27,9 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::setupUI() {
+    // Set a minimal style
+    setStyleSheet("QMainWindow { background-color: #f0f0f0; }");
+
     // Create central widget
     QWidget* centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
@@ -32,20 +39,14 @@ void MainWindow::setupUI() {
     
     // Create toolbar
     QToolBar* toolbar = new QToolBar(this);
+    toolbar->setStyleSheet("QToolBar { background-color: #ffffff; }");
     addToolBar(toolbar);
     
-    // Add toolbar actions
-    QAction* selectDirAction = toolbar->addAction("Select Directory");
-    QAction* batchRenameAction = toolbar->addAction("Batch Rename");
-    QAction* findDuplicatesAction = toolbar->addAction("Find Duplicates");
-    QAction* analyzeContentAction = toolbar->addAction("Analyze Content");
-    
-    // Create splitter for file view and details
-    QHBoxLayout* contentLayout = new QHBoxLayout();
-    
-    // Setup file system model
-    fileModel->setRootPath(QDir::rootPath());
-    fileModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files);
+    // Add toolbar actions with icons
+    QAction* selectDirAction = toolbar->addAction(QIcon::fromTheme("folder-open"), "Select Directory");
+    QAction* batchRenameAction = toolbar->addAction(QIcon::fromTheme("edit-rename"), "Batch Rename");
+    QAction* findDuplicatesAction = toolbar->addAction(QIcon::fromTheme("edit-delete"), "Find Duplicates");
+    QAction* analyzeContentAction = toolbar->addAction(QIcon::fromTheme("view-refresh"), "Analyze Content");
     
     // Create tree view
     QTreeView* treeView = new QTreeView(this);
@@ -55,57 +56,23 @@ void MainWindow::setupUI() {
     treeView->setColumnWidth(0, 250); // Name column
     treeView->setSortingEnabled(true);
     
-    // Create file details panel
-    QWidget* detailsPanel = new QWidget(this);
-    QVBoxLayout* detailsLayout = new QVBoxLayout(detailsPanel);
+    // Add tree view to main layout
+    mainLayout->addWidget(treeView);
     
-    // Add details widgets
-    QLabel* detailsLabel = new QLabel("File Details", detailsPanel);
-    detailsLabel->setStyleSheet("font-weight: bold;");
-    detailsLayout->addWidget(detailsLabel);
-    
-    // Add preview area
-    QLabel* previewLabel = new QLabel("Preview", detailsPanel);
-    previewLabel->setStyleSheet("font-weight: bold;");
-    detailsLayout->addWidget(previewLabel);
-    
-    QWidget* previewArea = new QWidget(detailsPanel);
-    previewArea->setMinimumHeight(200);
-    previewArea->setStyleSheet("background-color: #f0f0f0; border: 1px solid #ddd;");
-    detailsLayout->addWidget(previewArea);
-    
-    detailsLayout->addStretch();
-    
-    // Add views to content layout
-    contentLayout->addWidget(treeView, 7);  // 70% of space
-    contentLayout->addWidget(detailsPanel, 3);  // 30% of space
-    
-    // Add layouts to main layout
-    mainLayout->addLayout(contentLayout);
-    
-    // Create status bar
-    QStatusBar* statusBar = new QStatusBar(this);
-    setStatusBar(statusBar);
-    statusBar->showMessage("Ready");
-    
-    // Set window properties
-    resize(1200, 800);
-    setWindowTitle("File Manager");
-    
-    // Store widgets for later access
-    this->treeView = treeView;
+    // Add animations
+    QPropertyAnimation *animation = new QPropertyAnimation(treeView, "opacity");
+    animation->setDuration(1000);
+    animation->setStartValue(0);
+    animation->setEndValue(1);
+    animation->start();
 }
 
 void MainWindow::setupConnections() {
-    // Connect toolbar actions
-    connect(toolbar->actions()[0], &QAction::triggered, this, &MainWindow::onDirectorySelected);
-    connect(toolbar->actions()[1], &QAction::triggered, this, &MainWindow::onBatchRename);
-    connect(toolbar->actions()[2], &QAction::triggered, this, &MainWindow::onRemoveDuplicates);
-    connect(toolbar->actions()[3], &QAction::triggered, this, &MainWindow::onAnalyzeContent);
-    
-    // Connect tree view selection changes
-    connect(treeView->selectionModel(), &QItemSelectionModel::selectionChanged,
-            this, &MainWindow::onSelectionChanged);
+    // Connect toolbar actions to slots
+    connect(selectDirAction, &QAction::triggered, this, &MainWindow::onDirectorySelected);
+    connect(batchRenameAction, &QAction::triggered, this, &MainWindow::onBatchRename);
+    connect(findDuplicatesAction, &QAction::triggered, this, &MainWindow::onRemoveDuplicates);
+    connect(analyzeContentAction, &QAction::triggered, this, &MainWindow::onAnalyzeContent);
 }
 
 void MainWindow::onBatchRename() {
