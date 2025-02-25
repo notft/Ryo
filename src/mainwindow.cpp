@@ -10,54 +10,72 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QPropertyAnimation>
+#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , fileModel(new QFileSystemModel(this))
-    , fileManager(new FileManager())
+    , fileManager(new FileManager(this))
 {
     ui->setupUi(this);
+    
+    // Create menus if they don't exist in the UI
+    QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
+    QMenu *toolsMenu = menuBar()->addMenu(tr("&Tools"));
+    
+    // Initialize the actions
+    selectDirAction = new QAction(tr("Select Directory"), this);
+    batchRenameAction = new QAction(tr("Batch Rename"), this);
+    findDuplicatesAction = new QAction(tr("Find Duplicates"), this);
+    analyzeContentAction = new QAction(tr("Analyze Content"), this);
+    
+    // Add actions to menus
+    fileMenu->addAction(selectDirAction);
+    toolsMenu->addAction(batchRenameAction);
+    toolsMenu->addAction(findDuplicatesAction);
+    toolsMenu->addAction(analyzeContentAction);
+    
     setupUI();
     setupConnections();
 }
 
 MainWindow::~MainWindow() {
-    delete fileManager;
+    delete ui;
+    // fileModel and fileManager are QObject children and will be deleted automatically
 }
 
 void MainWindow::setupUI() {
     // Set a minimal style
     setStyleSheet("QMainWindow { background-color: #f0f0f0; }");
 
-    // Create central widget
-    QWidget* centralWidget = new QWidget(this);
-    setCentralWidget(centralWidget);
-    
-    // Create main layout
-    QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget);
-    
-    // Create toolbar
-    QToolBar* toolbar = new QToolBar(this);
-    toolbar->setStyleSheet("QToolBar { background-color: #ffffff; }");
-    addToolBar(toolbar);
-    
-    // Add toolbar actions with icons
-    QAction* selectDirAction = toolbar->addAction(QIcon::fromTheme("folder-open"), "Select Directory");
-    QAction* batchRenameAction = toolbar->addAction(QIcon::fromTheme("edit-rename"), "Batch Rename");
-    QAction* findDuplicatesAction = toolbar->addAction(QIcon::fromTheme("edit-delete"), "Find Duplicates");
-    QAction* analyzeContentAction = toolbar->addAction(QIcon::fromTheme("view-refresh"), "Analyze Content");
-    
-    // Create tree view
-    QTreeView* treeView = new QTreeView(this);
+    // Fix: Initialize member variables that are used in other functions
+    treeView = new QTreeView(this);
     treeView->setModel(fileModel);
     treeView->setRootIndex(fileModel->index(QDir::homePath()));
     treeView->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    treeView->setColumnWidth(0, 250); // Name column
+    treeView->setColumnWidth(0, 250);
     treeView->setSortingEnabled(true);
     
-    // Add tree view to main layout
+    // Initialize detailsLabel
+    detailsLabel = new QLabel(this);
+    detailsLabel->setWordWrap(true);
+    
+    // Create and initialize toolbar
+    toolbar = new QToolBar(this);
+    toolbar->setStyleSheet("QToolBar { background-color: #ffffff; }");
+    addToolBar(toolbar);
+    
+    // Create layout
+    QWidget* centralWidget = new QWidget(this);
+    QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget);
     mainLayout->addWidget(treeView);
+    mainLayout->addWidget(detailsLabel);
+    setCentralWidget(centralWidget);
+    
+    // Connect selection model signals
+    connect(treeView->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &MainWindow::onSelectionChanged);
     
     // Add animations
     QPropertyAnimation *animation = new QPropertyAnimation(treeView, "opacity");
@@ -68,7 +86,7 @@ void MainWindow::setupUI() {
 }
 
 void MainWindow::setupConnections() {
-    // Connect toolbar actions to slots
+    // Now these actions are properly declared and can be connected
     connect(selectDirAction, &QAction::triggered, this, &MainWindow::onDirectorySelected);
     connect(batchRenameAction, &QAction::triggered, this, &MainWindow::onBatchRename);
     connect(findDuplicatesAction, &QAction::triggered, this, &MainWindow::onRemoveDuplicates);

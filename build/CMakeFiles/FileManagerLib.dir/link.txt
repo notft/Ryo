@@ -1,0 +1,2 @@
+/usr/bin/ar qc libFileManagerLib.a CMakeFiles/FileManagerLib.dir/FileManagerLib_autogen/mocs_compilation.cpp.o CMakeFiles/FileManagerLib.dir/src/filemanager.cpp.o CMakeFiles/FileManagerLib.dir/src/mainwindow.cpp.o
+/usr/bin/ranlib libFileManagerLib.a

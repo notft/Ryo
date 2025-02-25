@@ -1,12 +1,16 @@
-#pragma once
+#ifndef FILEMANAGER_H
+#define FILEMANAGER_H
 
 #include <QString>
 #include <QStringList>
 #include <QFileInfo>
+#include <QObject>
 
-class FileManager {
+class FileManager : public QObject {
+    Q_OBJECT
+
 public:
-    FileManager();
+    explicit FileManager(QObject *parent = nullptr);
     
     bool batchRename(const QStringList& files, const QString& pattern);
     QStringList findDuplicatesByContent(const QString& directory);
@@ -18,3 +22,5 @@ private:
     bool compareFiles(const QString& file1, const QString& file2);
     QByteArray calculateFileHash(const QString& filePath);
 };
+
+#endif // FILEMANAGER_H

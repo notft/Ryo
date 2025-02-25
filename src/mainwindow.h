@@ -6,6 +6,7 @@
 #include <QTreeView>
 #include <QLabel>
 #include <QToolBar>
+#include <QMenu>
 #include "filemanager.h"
 #include "fileanalyzer.h"
 
@@ -37,6 +38,12 @@ private:
     QTreeView *treeView;
     QLabel *detailsLabel;
     QToolBar *toolbar;
+    
+    // Add these QAction members
+    QAction *selectDirAction;
+    QAction *batchRenameAction;
+    QAction *findDuplicatesAction;
+    QAction *analyzeContentAction;
     
     void setupUI();
     void setupConnections();

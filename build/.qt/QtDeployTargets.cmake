@@ -1,0 +1,6 @@
+set(__QT_DEPLOY_TARGET_FileManagerLib_FILE /home/luca/Documents/Code/Ryo/build/libFileManagerLib.a)
+set(__QT_DEPLOY_TARGET_FileManagerLib_TYPE STATIC_LIBRARY)
+set(__QT_DEPLOY_TARGET_FileManager_FILE /home/luca/Documents/Code/Ryo/build/FileManager)
+set(__QT_DEPLOY_TARGET_FileManager_TYPE EXECUTABLE)
+set(__QT_DEPLOY_TARGET_FileManagerTest_FILE /home/luca/Documents/Code/Ryo/build/FileManagerTest)
+set(__QT_DEPLOY_TARGET_FileManagerTest_TYPE EXECUTABLE)

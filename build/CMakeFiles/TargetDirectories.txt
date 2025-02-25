@@ -1,3 +1,12 @@
-C:/Users/aibel/OneDrive/Documents/Code/file_manager/build/CMakeFiles/FileManager.dir
-C:/Users/aibel/OneDrive/Documents/Code/file_manager/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/aibel/OneDrive/Documents/Code/file_manager/build/CMakeFiles/ZERO_CHECK.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerLib.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManager.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerTest.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/test.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/edit_cache.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/rebuild_cache.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerLib_autogen_timestamp_deps.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerLib_autogen.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManager_autogen_timestamp_deps.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManager_autogen.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerTest_autogen_timestamp_deps.dir
+/home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerTest_autogen.dir
