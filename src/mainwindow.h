@@ -9,6 +9,9 @@
 #include <QMenu>
 #include "filemanager.h"
 #include "fileanalyzer.h"
+#include <QListWidget>
+#include <QPushButton>
+#include <QSplitter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,6 +32,8 @@ private slots:
     void onRemoveDuplicates();
     void onDirectorySelected();
     void onSelectionChanged();
+    void onFindDuplicates();
+    void onDuplicatesFound(const QStringList& duplicates);
 
 private:
     Ui::MainWindow *ui;
@@ -45,8 +50,14 @@ private:
     QAction *findDuplicatesAction;
     QAction *analyzeContentAction;
     
+    QListWidget* duplicatesList;
+    QPushButton* removeDuplicatesButton;
+    QSplitter* mainSplitter;
+    
     void setupUI();
     void setupConnections();
+    void setupDarkTheme();
+    void setupDuplicatesUI();
 };
 
 #endif // MAINWINDOW_H

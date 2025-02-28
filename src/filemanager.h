@@ -17,6 +17,10 @@ public:
     QStringList findDuplicatesByMetadata(const QString& directory);
     bool removeDuplicates(const QStringList& files);
 
+signals:
+    void progressUpdated(int progress, int total);
+    void operationCompleted(bool success, const QString& message);
+
 private:
     QString generateNewName(const QString& pattern, const QFileInfo& file, int index);
     bool compareFiles(const QString& file1, const QString& file2);

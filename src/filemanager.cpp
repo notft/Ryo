@@ -2,6 +2,8 @@
 #include <QCryptographicHash>
 #include <QFile>
 #include <QDir>
+#include <QDateTime>
+#include <QRegularExpression>
 
 FileManager::FileManager(QObject *parent) : QObject(parent) {
     // Constructor implementation
@@ -9,18 +11,64 @@ FileManager::FileManager(QObject *parent) : QObject(parent) {
 
 bool FileManager::batchRename(const QStringList& files, const QString& pattern) {
     if (files.isEmpty() || pattern.isEmpty()) {
+        emit operationCompleted(false, "No files selected or empty pattern");
         return false;
     }
 
-    int index = 0;
-    for (const QString& filePath : files) {
+    int total = files.size();
+    int success = 0;
+    QStringList errors;
+
+    // Available patterns:
+    // %n - number
+    // %d - date
+    // %o - original name
+    // %e - extension
+
+    for (int i = 0; i < files.size(); ++i) {
+        QString filePath = files[i];
         QFileInfo fileInfo(filePath);
-        QString newName = generateNewName(pattern, fileInfo, index++);
-        if (!QFile::rename(filePath, newName)) {
-            return false;
+        
+        if (!fileInfo.exists()) {
+            errors << QString("File not found: %1").arg(filePath);
+            continue;
         }
+
+        QString newName = pattern;
+        
+       
+        newName.replace("%n", QString::number(i + 1).rightJustified(3, '0'));
+        newName.replace("%d", QDateTime::currentDateTime().toString("yyyyMMdd"));
+        newName.replace("%o", fileInfo.baseName());
+        newName.replace("%e", fileInfo.suffix());
+
+        QString newPath = fileInfo.absolutePath() + QDir::separator() + newName;
+        if (!fileInfo.suffix().isEmpty()) {
+            newPath += "." + fileInfo.suffix();
+        }
+
+        
+        if (QFile::exists(newPath) && newPath != filePath) {
+            errors << QString("Target file already exists: %1").arg(newPath);
+            continue;
+        }
+
+        if (QFile::rename(filePath, newPath)) {
+            success++;
+        } else {
+            errors << QString("Failed to rename: %1").arg(filePath);
+        }
+
+        emit progressUpdated(i + 1, total);
     }
-    return true;
+
+    QString message = QString("Renamed %1 of %2 files").arg(success).arg(total);
+    if (!errors.isEmpty()) {
+        message += "\nErrors:\n" + errors.join("\n");
+    }
+
+    emit operationCompleted(success == total, message);
+    return success == total;
 }
 
 QStringList FileManager::findDuplicatesByContent(const QString& directory) {
@@ -28,7 +76,30 @@ QStringList FileManager::findDuplicatesByContent(const QString& directory) {
     QDir dir(directory);
     QStringList files = dir.entryList(QDir::Files);
     
-    // Implementation coming soon
+    QMap<QByteArray, QStringList> hashMap;
+    int total = files.size();
+    
+    // Calculate hashes for all files
+    for (int i = 0; i < files.size(); ++i) {
+        QString filePath = dir.absoluteFilePath(files[i]);
+        QByteArray hash = calculateFileHash(filePath);
+        
+        if (!hash.isEmpty()) {
+            hashMap[hash].append(filePath);
+        }
+        
+        emit progressUpdated(i + 1, total);
+    }
+    
+    // Find duplicates
+    for (const QStringList& fileList : hashMap) {
+        if (fileList.size() > 1) {
+            duplicates.append(fileList);
+        }
+    }
+    
+    emit operationCompleted(true, 
+        QString("Found %1 sets of duplicate files").arg(duplicates.size() / 2));
     return duplicates;
 }
 
@@ -37,13 +108,38 @@ QStringList FileManager::findDuplicatesByMetadata(const QString& directory) {
     QDir dir(directory);
     QStringList files = dir.entryList(QDir::Files);
     
-    // Implementation coming soon
+    
     return duplicates;
 }
 
 bool FileManager::removeDuplicates(const QStringList& files) {
-    // Implementation coming soon
-    return false;
+    if (files.isEmpty()) {
+        emit operationCompleted(false, "No files selected");
+        return false;
+    }
+    
+    int total = files.size();
+    int removed = 0;
+    QStringList errors;
+    
+    for (int i = 0; i < files.size(); ++i) {
+        QFile file(files[i]);
+        if (file.remove()) {
+            removed++;
+        } else {
+            errors << QString("Failed to remove: %1").arg(files[i]);
+        }
+        
+        emit progressUpdated(i + 1, total);
+    }
+    
+    QString message = QString("Removed %1 of %2 duplicate files").arg(removed).arg(total);
+    if (!errors.isEmpty()) {
+        message += "\nErrors:\n" + errors.join("\n");
+    }
+    
+    emit operationCompleted(removed == total, message);
+    return removed == total;
 }
 
 QString FileManager::generateNewName(const QString& pattern, const QFileInfo& file, int index) {
