@@ -73,7 +73,7 @@ FileManagerTest_autogen/timestamp: /usr/lib/qt6/moc
 FileManagerTest_autogen/timestamp: /usr/lib/qt6/uic
 FileManagerTest_autogen/timestamp: CMakeFiles/FileManagerTest.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/luca/Documents/Code/Ryo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target FileManagerTest"
-	/usr/bin/cmake -E cmake_autogen /home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerTest_autogen.dir/AutogenInfo.json ""
+	/usr/bin/cmake -E cmake_autogen /home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerTest_autogen.dir/AutogenInfo.json Debug
 	/usr/bin/cmake -E touch /home/luca/Documents/Code/Ryo/build/FileManagerTest_autogen/timestamp
 
 CMakeFiles/FileManagerTest.dir/codegen:
@@ -83,29 +83,29 @@ CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o: C
 CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o: FileManagerTest_autogen/mocs_compilation.cpp
 CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o: CMakeFiles/FileManagerTest.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luca/Documents/Code/Ryo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o -MF CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o -c /home/luca/Documents/Code/Ryo/build/FileManagerTest_autogen/mocs_compilation.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o -MF CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.o -c /home/luca/Documents/Code/Ryo/build/FileManagerTest_autogen/mocs_compilation.cpp
 
 CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/Documents/Code/Ryo/build/FileManagerTest_autogen/mocs_compilation.cpp > CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/Documents/Code/Ryo/build/FileManagerTest_autogen/mocs_compilation.cpp > CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/Documents/Code/Ryo/build/FileManagerTest_autogen/mocs_compilation.cpp -o CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/Documents/Code/Ryo/build/FileManagerTest_autogen/mocs_compilation.cpp -o CMakeFiles/FileManagerTest.dir/FileManagerTest_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o: CMakeFiles/FileManagerTest.dir/flags.make
 CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o: /home/luca/Documents/Code/Ryo/tests/filemanager_test.cpp
 CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o: CMakeFiles/FileManagerTest.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luca/Documents/Code/Ryo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o -MF CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o.d -o CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o -c /home/luca/Documents/Code/Ryo/tests/filemanager_test.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o -MF CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o.d -o CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.o -c /home/luca/Documents/Code/Ryo/tests/filemanager_test.cpp
 
 CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/Documents/Code/Ryo/tests/filemanager_test.cpp > CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/Documents/Code/Ryo/tests/filemanager_test.cpp > CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.i
 
 CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/Documents/Code/Ryo/tests/filemanager_test.cpp -o CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/Documents/Code/Ryo/tests/filemanager_test.cpp -o CMakeFiles/FileManagerTest.dir/tests/filemanager_test.cpp.s
 
 # Object files for target FileManagerTest
 FileManagerTest_OBJECTS = \

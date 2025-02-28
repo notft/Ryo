@@ -73,7 +73,7 @@ FileManager_autogen/timestamp: /usr/lib/qt6/moc
 FileManager_autogen/timestamp: /usr/lib/qt6/uic
 FileManager_autogen/timestamp: CMakeFiles/FileManager.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/luca/Documents/Code/Ryo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target FileManager"
-	/usr/bin/cmake -E cmake_autogen /home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManager_autogen.dir/AutogenInfo.json ""
+	/usr/bin/cmake -E cmake_autogen /home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManager_autogen.dir/AutogenInfo.json Debug
 	/usr/bin/cmake -E touch /home/luca/Documents/Code/Ryo/build/FileManager_autogen/timestamp
 
 CMakeFiles/FileManager.dir/codegen:
@@ -83,29 +83,29 @@ CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o: CMakeFile
 CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o: FileManager_autogen/mocs_compilation.cpp
 CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o: CMakeFiles/FileManager.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luca/Documents/Code/Ryo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o -MF CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o -c /home/luca/Documents/Code/Ryo/build/FileManager_autogen/mocs_compilation.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o -MF CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.o -c /home/luca/Documents/Code/Ryo/build/FileManager_autogen/mocs_compilation.cpp
 
 CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/Documents/Code/Ryo/build/FileManager_autogen/mocs_compilation.cpp > CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/Documents/Code/Ryo/build/FileManager_autogen/mocs_compilation.cpp > CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/Documents/Code/Ryo/build/FileManager_autogen/mocs_compilation.cpp -o CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/Documents/Code/Ryo/build/FileManager_autogen/mocs_compilation.cpp -o CMakeFiles/FileManager.dir/FileManager_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/FileManager.dir/src/main.cpp.o: CMakeFiles/FileManager.dir/flags.make
 CMakeFiles/FileManager.dir/src/main.cpp.o: /home/luca/Documents/Code/Ryo/src/main.cpp
 CMakeFiles/FileManager.dir/src/main.cpp.o: CMakeFiles/FileManager.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/luca/Documents/Code/Ryo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FileManager.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileManager.dir/src/main.cpp.o -MF CMakeFiles/FileManager.dir/src/main.cpp.o.d -o CMakeFiles/FileManager.dir/src/main.cpp.o -c /home/luca/Documents/Code/Ryo/src/main.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileManager.dir/src/main.cpp.o -MF CMakeFiles/FileManager.dir/src/main.cpp.o.d -o CMakeFiles/FileManager.dir/src/main.cpp.o -c /home/luca/Documents/Code/Ryo/src/main.cpp
 
 CMakeFiles/FileManager.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FileManager.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/Documents/Code/Ryo/src/main.cpp > CMakeFiles/FileManager.dir/src/main.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/Documents/Code/Ryo/src/main.cpp > CMakeFiles/FileManager.dir/src/main.cpp.i
 
 CMakeFiles/FileManager.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FileManager.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/Documents/Code/Ryo/src/main.cpp -o CMakeFiles/FileManager.dir/src/main.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/Documents/Code/Ryo/src/main.cpp -o CMakeFiles/FileManager.dir/src/main.cpp.s
 
 # Object files for target FileManager
 FileManager_OBJECTS = \

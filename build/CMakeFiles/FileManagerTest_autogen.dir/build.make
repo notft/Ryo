@@ -72,7 +72,7 @@ FileManagerTest_autogen/timestamp: /usr/lib/qt6/moc
 FileManagerTest_autogen/timestamp: /usr/lib/qt6/uic
 FileManagerTest_autogen/timestamp: CMakeFiles/FileManagerTest_autogen.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/luca/Documents/Code/Ryo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target FileManagerTest"
-	/usr/bin/cmake -E cmake_autogen /home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerTest_autogen.dir/AutogenInfo.json ""
+	/usr/bin/cmake -E cmake_autogen /home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerTest_autogen.dir/AutogenInfo.json Debug
 	/usr/bin/cmake -E touch /home/luca/Documents/Code/Ryo/build/FileManagerTest_autogen/timestamp
 
 CMakeFiles/FileManagerTest_autogen.dir/codegen:

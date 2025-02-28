@@ -72,7 +72,7 @@ FileManagerLib_autogen/timestamp: /usr/lib/qt6/moc
 FileManagerLib_autogen/timestamp: /usr/lib/qt6/uic
 FileManagerLib_autogen/timestamp: CMakeFiles/FileManagerLib_autogen.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/luca/Documents/Code/Ryo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target FileManagerLib"
-	/usr/bin/cmake -E cmake_autogen /home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerLib_autogen.dir/AutogenInfo.json ""
+	/usr/bin/cmake -E cmake_autogen /home/luca/Documents/Code/Ryo/build/CMakeFiles/FileManagerLib_autogen.dir/AutogenInfo.json Debug
 	/usr/bin/cmake -E touch /home/luca/Documents/Code/Ryo/build/FileManagerLib_autogen/timestamp
 
 CMakeFiles/FileManagerLib_autogen.dir/codegen:
