@@ -6,7 +6,6 @@
 #include <QRegularExpression>
 
 FileManager::FileManager(QObject *parent) : QObject(parent) {
-    // Constructor implementation
 }
 
 bool FileManager::batchRename(const QStringList& files, const QString& pattern) {
@@ -19,12 +18,6 @@ bool FileManager::batchRename(const QStringList& files, const QString& pattern) 
     int success = 0;
     QStringList errors;
 
-    // Available patterns:
-    // %n - number
-    // %d - date
-    // %o - original name
-    // %e - extension
-
     for (int i = 0; i < files.size(); ++i) {
         QString filePath = files[i];
         QFileInfo fileInfo(filePath);
@@ -36,7 +29,6 @@ bool FileManager::batchRename(const QStringList& files, const QString& pattern) 
 
         QString newName = pattern;
         
-       
         newName.replace("%n", QString::number(i + 1).rightJustified(3, '0'));
         newName.replace("%d", QDateTime::currentDateTime().toString("yyyyMMdd"));
         newName.replace("%o", fileInfo.baseName());
@@ -47,7 +39,6 @@ bool FileManager::batchRename(const QStringList& files, const QString& pattern) 
             newPath += "." + fileInfo.suffix();
         }
 
-        
         if (QFile::exists(newPath) && newPath != filePath) {
             errors << QString("Target file already exists: %1").arg(newPath);
             continue;
@@ -79,7 +70,6 @@ QStringList FileManager::findDuplicatesByContent(const QString& directory) {
     QMap<QByteArray, QStringList> hashMap;
     int total = files.size();
     
-    // Calculate hashes for all files
     for (int i = 0; i < files.size(); ++i) {
         QString filePath = dir.absoluteFilePath(files[i]);
         QByteArray hash = calculateFileHash(filePath);
@@ -91,7 +81,6 @@ QStringList FileManager::findDuplicatesByContent(const QString& directory) {
         emit progressUpdated(i + 1, total);
     }
     
-    // Find duplicates
     for (const QStringList& fileList : hashMap) {
         if (fileList.size() > 1) {
             duplicates.append(fileList);
@@ -107,7 +96,6 @@ QStringList FileManager::findDuplicatesByMetadata(const QString& directory) {
     QStringList duplicates;
     QDir dir(directory);
     QStringList files = dir.entryList(QDir::Files);
-    
     
     return duplicates;
 }

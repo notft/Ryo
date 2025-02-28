@@ -24,17 +24,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     
-    // Create menus if they don't exist in the UI
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
     QMenu *toolsMenu = menuBar()->addMenu(tr("&Tools"));
     
-    // Initialize the actions
     selectDirAction = new QAction(tr("Select Directory"), this);
     batchRenameAction = new QAction(tr("Batch Rename"), this);
     findDuplicatesAction = new QAction(tr("Find Duplicates"), this);
     analyzeContentAction = new QAction(tr("Analyze Content"), this);
     
-    // Add actions to menus
     fileMenu->addAction(selectDirAction);
     toolsMenu->addAction(batchRenameAction);
     toolsMenu->addAction(findDuplicatesAction);
@@ -46,16 +43,13 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow() {
     delete ui;
-    // fileModel and fileManager are QObject children and will be deleted automatically
 }
 
 void MainWindow::setupUI() {
     setupDarkTheme();
     
-    // Create main splitter
     mainSplitter = new QSplitter(Qt::Horizontal, this);
     
-    // Left side - File tree
     QWidget* leftWidget = new QWidget(this);
     QVBoxLayout* leftLayout = new QVBoxLayout(leftWidget);
     
@@ -68,7 +62,6 @@ void MainWindow::setupUI() {
     
     leftLayout->addWidget(treeView);
     
-    // Right side - Details and duplicates
     QWidget* rightWidget = new QWidget(this);
     QVBoxLayout* rightLayout = new QVBoxLayout(rightWidget);
     
@@ -80,7 +73,6 @@ void MainWindow::setupUI() {
     rightLayout->addWidget(duplicatesList);
     rightLayout->addWidget(removeDuplicatesButton);
     
-    // Add widgets to splitter
     mainSplitter->addWidget(leftWidget);
     mainSplitter->addWidget(rightWidget);
     mainSplitter->setStretchFactor(0, 2);
@@ -158,7 +150,6 @@ void MainWindow::setupDuplicatesUI() {
 }
 
 void MainWindow::setupConnections() {
-    // Now these actions are properly declared and can be connected
     connect(selectDirAction, &QAction::triggered, this, &MainWindow::onDirectorySelected);
     connect(batchRenameAction, &QAction::triggered, this, &MainWindow::onBatchRename);
     connect(findDuplicatesAction, &QAction::triggered, this, &MainWindow::onFindDuplicates);
@@ -172,13 +163,11 @@ void MainWindow::onBatchRename() {
         return;
     }
 
-    // Collect file paths
     QStringList files;
     for (const QModelIndex& index : selection) {
         files << fileModel->filePath(index);
     }
 
-    // Show pattern input dialog with help text
     bool ok;
     QString helpText = "Available patterns:\n"
                       "%n - number (001, 002, etc)\n"
@@ -194,11 +183,9 @@ void MainWindow::onBatchRename() {
         return;
     }
 
-    // Create progress dialog
     QProgressDialog progress("Renaming files...", "Cancel", 0, files.size(), this);
     progress.setWindowModality(Qt::WindowModal);
 
-    // Connect signals
     connect(fileManager, &FileManager::progressUpdated,
             &progress, &QProgressDialog::setValue);
     
@@ -211,7 +198,6 @@ void MainWindow::onBatchRename() {
                 }
             });
 
-    // Start batch rename
     fileManager->batchRename(files, pattern);
 }
 
@@ -291,14 +277,11 @@ void MainWindow::onSelectionChanged() {
         QString path = fileModel->filePath(selection.first());
         QFileInfo fileInfo(path);
         
-        // Update details panel
-        QString details = QString("Name: %1\nSize: %2 bytes\nModified: %3")
+        detailsLabel->setText(QString("Name: %1\nSize: %2 bytes\nModified: %3")
                          .arg(fileInfo.fileName())
                          .arg(fileInfo.size())
-                         .arg(fileInfo.lastModified().toString());
-        detailsLabel->setText(details);
+                         .arg(fileInfo.lastModified().toString()));
         
-        // Update status bar
         statusBar()->showMessage(QString("%1 items selected").arg(selection.size() / 4));
     }
 }
